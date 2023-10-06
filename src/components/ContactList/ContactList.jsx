@@ -6,11 +6,11 @@ export class ContactList extends Component {
     const { list, filter, delCont } = this.props;
     return (
       <List>
-        {list.map(item => {
-          if (!item.name.toLowerCase().includes(filter.toLowerCase())) {
-            return;
-          }
-          return (
+        {list
+          .filter(elem =>
+            elem.name.toLowerCase().includes(filter.toLowerCase())
+          )
+          .map(item => (
             <Item key={item.id}>
               <p>
                 {item.name}: {item.number}
@@ -19,8 +19,7 @@ export class ContactList extends Component {
                 Delete
               </Btn>
             </Item>
-          );
-        })}
+          ))}
       </List>
     );
   }
