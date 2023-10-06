@@ -7,18 +7,19 @@ export class ContactList extends Component {
     return (
       <List>
         {list.map(item => {
-          if (item.name.toLowerCase().includes(filter.toLowerCase())) {
-            return (
-              <Item key={item.id}>
-                <p>
-                  {item.name}: {item.number}
-                </p>
-                <Btn onClick={() => delCont(item.id)} type="button">
-                  Delete
-                </Btn>
-              </Item>
-            );
+          if (!item.name.toLowerCase().includes(filter.toLowerCase())) {
+            return;
           }
+          return (
+            <Item key={item.id}>
+              <p>
+                {item.name}: {item.number}
+              </p>
+              <Btn onClick={() => delCont(item.id)} type="button">
+                Delete
+              </Btn>
+            </Item>
+          );
         })}
       </List>
     );
